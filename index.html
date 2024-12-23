@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTML Unleashed</title>
+    <link rel="icon" href="https://i.imgur.com/NyPZxPZ.png" type="image/png">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-okaidia.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://raw.githubusercontent.com/sxgex/HTML-unleashed/main/style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>
+            <img src="https://i.imgur.com/NyPZxPZ.png" alt="Logo">
+            HTML Unleashed
+        </h1>
+        <button onclick="openAboutModal()" class="about-button">About</button>
+        <div class="github-link">
+            <a href="https://github.com/exploit-kid/HTML-unleashed" target="_blank">Please ⭐ this project on GitHub</a>
+        </div>
+        <div class="editor-container">
+            <button onclick="openFileManager()" class="file-manager-toggle">
+                <img src="https://i.imgur.com/IJzOm2Y.png" alt="File Manager Icon">
+            </button>
+            <button onclick="toggleFullscreen()" class="fullscreen-toggle">
+                <img src="https://www.freeiconspng.com/uploads/white-full-screen-icon-5.png" alt="Fullscreen Icon">
+            </button>
+            <pre id="codeEditor" class="language-html" contenteditable="true" oninput="updateDataUrl()"></pre>
+        </div>
+        <div>
+            <label for="encodingSelector">Select Encoding:</label>
+            <select id="encodingSelector" onchange="updateDataUrl()">
+                <option value="base64">Base64</option>
+                <option value="hex">Hexadecimal</option>
+                <option value="utf8">UTF-8</option>
+                <option value="url">URL Encoding</option>
+            </select>
+        </div>
+        <div id="dataUrlDisplay">Data URL Will Appear Here</div>
+        <button onclick="copyDataUrl()" class="copy-button">Copy Data URL</button>
+    </div>
+
+    <div id="fileManagerModal" class="modal">
+        <h2>File Manager</h2>
+        <button onclick="document.getElementById('fileInput').click()">Upload HTML File</button>
+        <button onclick="downloadFile()">Download HTML File</button>
+        <button class="close-button" onclick="closeFileManager()">Close</button>
+    </div>
+
+    <div id="aboutModal" class="modal">
+        <h2>About HTML Unleashed</h2>
+        <p>HTML Unleashed is a tool designed to empower students and developers alike by providing an innovative way to work with HTML code effortlessly. Created by Exploit Kid, this project was born out of the need to bypass restrictive environments that limit creativity and exploration in coding. With HTML Unleashed, users can encode their HTML into a Data URL, allowing them to execute and test their code directly within a browser without relying on external tools or servers.</p>
+        <button class="close-button" onclick="closeAboutModal()">Close</button>
+    </div>
+
+    <input type="file" id="fileInput" accept=".html" style="display: none;" onchange="handleFileUpload(event)">
+
+    <script src="https://raw.githubusercontent.com/sxgex/HTML-unleashed/main/script.js"></script>
+</body>
+</html>
