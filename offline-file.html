@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTML Unleashed</title>
+    <link rel="icon" href="https://i.imgur.com/NyPZxPZ.png" type="image/png">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-okaidia.min.css" rel="stylesheet" />
+    <style>
+    /* Style for the label */
+    label[for="encodingSelector"] {
+        display: block;
+        margin: 15px 0 5px; /* Compact spacing */
+        font-size: 14px; /* Smaller font size */
+        font-weight: bold;
+        color: #ff6b6b;
+        text-align: left; /* Align text to the left */
+        text-shadow: none; /* Simplified styling for compact design */
+        padding-left: 5px; /* Left padding for alignment */
+    }
+
+    /* Style for the dropdown menu */
+    select#encodingSelector {
+        display: block;
+        margin: 0 0 20px; /* Compact spacing */
+        width: 180px; /* Smaller width */
+        padding: 8px 12px; /* Compact padding */
+        font-size: 14px; /* Smaller font size */
+        font-weight: bold;
+        background: linear-gradient(145deg, #222232, #2e2e48);
+        color: #ff6b6b;
+        border: 1px solid #444;
+        border-radius: 8px; /* Smaller border radius */
+        appearance: none; /* Remove default dropdown arrow */
+        box-shadow: inset 2px 2px 4px rgba(0, 0, 0, 0.4), inset -2px -2px 4px rgba(255, 255, 255, 0.1);
+        cursor: pointer;
+        transition: all 0.3s ease;
+        text-align: left; /* Align text inside dropdown */
+        text-transform: uppercase; /* Uppercase for dropdown options */
+    }
+
+    /* Customize options inside the dropdown */
+    select#encodingSelector option {
+        background-color: #2b2b3c;
+        color: #fff;
+        padding: 8px; /* Smaller padding */
+        font-size: 14px; /* Smaller font size */
+        text-transform: none; /* Preserve case */
+        text-align: left; /* Align text inside options */
+    }
+
+    /* Add a custom arrow to the dropdown */
+    select#encodingSelector::-ms-expand {
+        display: none; /* Hide default arrow in IE */
+    }
+
+    /* Hover effect for the dropdown */
+    select#encodingSelector:hover {
+        background: linear-gradient(145deg, #2e2e48, #222232);
+        border-color: #ff6b6b;
+    }
+
+    /* Focus effect for the dropdown */
+    select#encodingSelector:focus {
+        outline: none;
+        background: linear-gradient(145deg, #3c3c5a, #292942);
+        border-color: #ff6b6b;
+        color: #ffffff;
+    }
+    .tooltip {
+    position: absolute;
+    background-color: #333;
+    color: #fff;
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-size: 12px;
+    pointer-events: none;
+    z-index: 1000;
+    white-space: nowrap;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    animation: fadeInTooltip 0.2s ease;
+}
+@keyframes fadeInTooltip {
+    from { opacity: 0; transform: translateY(5px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+   
+            body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #1e1e2f;
+            color: #fff;
+            animation: fadeIn 1.5s ease-in-out;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        .container {
+            max-width: 700px;
+            margin: 60px auto;
+            padding: 30px;
+            background-color: #2b2b3c;
+            border-radius: 10px;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.5);
+        }
+        h1 {
+            font-size: 28px;
+            margin-bottom: 15px;
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #ff6b6b;
+        }
+        h1 img {
+            margin-right: 10px;
+            height: 30px;
+        }
+        .github-link {
+            text-align: center;
+            margin-bottom: 10px;
+        }
+        .github-link a {
+            color: #ff6b6b;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 16px;
+        }
+        .github-link a:hover {
+            text-decoration: underline;
+        }
+        .about-button {
+            display: block;
+            margin: 10px auto 20px;
+            padding: 6px 12px;
+            font-size: 14px;
+            background-color: #ff6b6b;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            width: auto;
+            transition: background-color 0.3s ease;
+        }
+        .about-button:hover {
+            background-color: #e05656;
+        }
+        #aboutModal {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 80%;
+            max-width: 600px;
+            background-color: #2b2b3c;
+            color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+        }
+        #aboutModal p {
+            margin-bottom: 15px;
+            line-height: 1.6;
+        }
+        #aboutModal .close-button {
+            display: block;
+            margin: 0 auto;
+            padding: 6px 12px;
+            font-size: 14px;
+            background-color: #ff6b6b;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        #aboutModal .close-button:hover {
+            background-color: #e05656;
+        }
+        .editor-container {
+            position: relative;
+            margin-top: 20px;
+        }
+        .file-manager-toggle {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 0;
+        }
+        .file-manager-toggle img {
+            height: 20px;
+        }
+        .fullscreen-toggle {
+            position: absolute;
+            top: 40px;
+            right: 10px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 0;
+        }
+        .fullscreen-toggle img {
+            height: 20px;
+        }
+        #codeEditor {
+            padding: 12px;
+            font-size: 16px;
+            background-color: #1e1e2f;
+            color: #f4f4f4;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            min-height: 200px;
+            max-height: 400px;
+            overflow: auto;
+            white-space: pre;
+            outline: none;
+            margin: 0;
+        }
+        #dataUrlDisplay {
+            margin-top: 20px;
+            background-color: #333;
+            padding: 12px;
+            border-radius: 5px;
+            word-wrap: break-word;
+            font-family: monospace;
+            color: #ff6b6b;
+            white-space: nowrap;
+            overflow-x: auto;
+        }
+        .copy-button {
+            display: block;
+            margin: 10px auto;
+            padding: 6px 12px;
+            font-size: 14px;
+            background-color: #ff6b6b;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            width: auto;
+            transition: background-color 0.3s ease;
+        }
+        .copy-button:hover {
+            background-color: #e05656;
+        }
+        .modal {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 80%;
+            max-width: 500px;
+            background-color: #2b2b3c;
+            padding: 20px;
+            border-radius: 10px;
+            z-index: 1000;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.5);
+        }
+        .modal h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .modal button {
+            display: block;
+            margin: 10px auto;
+            padding: 10px 20px;
+            font-size: 14px;
+            background-color: #ff6b6b;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .modal button:hover {
+            background-color: #e05656;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>
+        <img src="https://i.imgur.com/NyPZxPZ.png" alt="Logo">
+        HTML Unleashed
+    </h1>
+    <button onclick="openAboutModal()" class="about-button">About</button>
+    <div class="github-link">
+        <a href="https://github.com/exploit-kid/HTML-unleashed" target="_blank">Please ⭐ this project on GitHub</a>
+    </div>
+    <div class="editor-container">
+        <button onclick="openFileManager()" class="file-manager-toggle">
+            <img src="https://i.imgur.com/IJzOm2Y.png" alt="File Manager Icon">
+        </button>
+        <button onclick="toggleFullscreen()" class="fullscreen-toggle">
+            <img src="https://www.freeiconspng.com/uploads/white-full-screen-icon-5.png" alt="Fullscreen Icon">
+        </button>
+        <pre id="codeEditor" class="language-html" contenteditable="true" oninput="updateDataUrl()"></pre>
+    </div>
+    <div>
+        <label for="encodingSelector">Select Encoding:</label>
+        <select id="encodingSelector" onchange="updateDataUrl()">
+            <option value="base64">Base64</option>
+            <option value="hex">Hexadecimal</option>
+            <option value="utf8">UTF-8</option>
+            <option value="url">URL Encoding</option>
+        </select>
+    </div>
+    <div id="dataUrlDisplay">Data URL Will Appear Here</div>
+    <button onclick="copyDataUrl()" class="copy-button">Copy Data URL</button>
+</div>
+
+<div id="fileManagerModal" class="modal">
+    <h2>File Manager</h2>
+    <button onclick="document.getElementById('fileInput').click()">Upload HTML File</button>
+    <button onclick="downloadFile()">Download HTML File</button>
+    <button class="close-button" onclick="closeFileManager()">Close</button>
+</div>
+
+<div id="aboutModal" class="modal">
+    <h2>About HTML Unleashed</h2>
+    <p>HTML Unleashed is a tool designed to empower students and developers alike by providing an innovative way to work with HTML code effortlessly. Created by Exploit Kid, this project was born out of the need to bypass restrictive environments that limit creativity and exploration in coding. With HTML Unleashed, users can encode their HTML into a Data URL, allowing them to execute and test their code directly within a browser without relying on external tools or servers.</p>
+    <button class="close-button" onclick="closeAboutModal()">Close</button>
+</div>
+
+<input type="file" id="fileInput" accept=".html" style="display: none;" onchange="handleFileUpload(event)">
+
+<script>
+    function openFileManager() {
+        document.getElementById('fileManagerModal').style.display = 'block';
+    }
+
+    function closeFileManager() {
+        document.getElementById('fileManagerModal').style.display = 'none';
+    }
+
+    function handleFileUpload(event) {
+        const file = event.target.files[0];
+        if (file && file.type === 'text/html') {
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                document.getElementById('codeEditor').textContent = e.target.result;
+                updateDataUrl();
+                closeFileManager();
+            };
+            reader.readAsText(file);
+        } else {
+            alert("Please upload a valid HTML file.");
+        }
+    }
+
+    function downloadFile() {
+    // Ask the user for a filename
+    let filename = prompt("Please enter a filename for your file:", "untitled.html");
+
+    // If the user didn't cancel or leave it empty, proceed
+    if (filename) {
+        // Get the content of the code editor (make sure it's the correct content type)
+        const code = document.getElementById('codeEditor').textContent;
+
+        // Create a Blob with the content (adjust MIME type if needed)
+        const blob = new Blob([code], { type: 'text/html' });
+
+        // Create a temporary anchor element to trigger the download
+        const link = document.createElement('a');
+        link.href = URL.createObjectURL(blob);
+        link.download = filename; // Set the filename to the user input
+        link.click();
+    }
+}
+
+
+    function updateDataUrl() {
+    const code = document.getElementById('codeEditor').textContent.trim(); // Trim whitespace
+    const encoding = document.getElementById('encodingSelector').value;
+    let dataUrl;
+
+    if (encoding === 'base64') {
+        try {
+            // Normalize the string by replacing newlines and encoding in Base64
+            const normalizedCode = code.replace(/\r?\n/g, '');
+            dataUrl = 'data:text/html;base64,' + btoa(normalizedCode);
+        } catch (error) {
+            console.error('Error encoding to Base64:', error);
+            dataUrl = 'Error: Unable to encode content to Base64.';
+        }
+    } else if (encoding === 'hex') {
+        dataUrl = 'data:text/html,' + [...code].map(char => char.charCodeAt(0).toString(16).padStart(2, '0')).join('');
+    } else if (encoding === 'utf8') {
+        dataUrl = 'data:text/html;charset=utf-8,' + encodeURIComponent(code);
+    } else if (encoding === 'url') {
+        dataUrl = 'data:text/html,' + encodeURIComponent(code);
+    }
+
+    document.getElementById('dataUrlDisplay').textContent = dataUrl;
+}
+
+    function copyDataUrl() {
+        const dataUrl = document.getElementById('dataUrlDisplay').textContent;
+        if (navigator.clipboard) {
+            navigator.clipboard.writeText(dataUrl).then(function() {
+                alert('Data URL copied to clipboard');
+            }).catch(function(error) {
+                console.error('Error copying text: ', error);
+                alert('Failed to copy Data URL');
+            });
+        } else {
+            const textarea = document.createElement('textarea');
+            textarea.value = dataUrl;
+            document.body.appendChild(textarea);
+            textarea.select();
+            document.execCommand('copy');
+            document.body.removeChild(textarea);
+            alert('Data URL copied to clipboard');
+        }
+    }
+
+    function openAboutModal() {
+        document.getElementById('aboutModal').style.display = 'block';
+    }
+
+    function closeAboutModal() {
+        document.getElementById('aboutModal').style.display = 'none';
+    }
+
+    function toggleFullscreen() {
+        const editor = document.getElementById('codeEditor');
+        if (!document.fullscreenElement) {
+            editor.requestFullscreen();
+        } else {
+            document.exitFullscreen();
+        }
+    }
+</script>
+</body>
+</html>
