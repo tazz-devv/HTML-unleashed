@@ -5,7 +5,7 @@
 I created this tool to overcome the restrictions I faced while trying to edit HTML code at school. Many school networks block access to code editors, and we can't install essential software like VS Code or Node.js. This limitation stifled creativity and made it difficult to practice and improve coding skills in a controlled environment. By using Data URLs, HTML Unleashed allows users to encode their HTML into a format that can be executed directly within a browser. This method effectively bypasses network restrictions, as browsers and extensions typically do not block Data URLs. This enables students and developers to continue coding and testing their projects seamlessly and without the need for additional tools or software. 
 
 ### Features 
-- Real-time HTML editing - Data URL encoding - Easy file download - Browser-based execution 
+- Real-time HTML editing - Data URL encoding - Easy file downloading and uploading - Browser-based execution 
 
 ### Deployments 
 
@@ -25,4 +25,7 @@ Deploy HTML Unleashed to your preferred cloud service using the buttons below:
 [![Deploy to Koyeb](https://binbashbanana.github.io/deploy-buttons/buttons/remade/koyeb.svg)](https://app.koyeb.com/deploy?type=git&repository=github.com/sxgex/HTML-unleashed&branch=main&name=HTML-Unleashed)
 [![Deploy with Vercel](https://binbashbanana.github.io/deploy-buttons/buttons/remade/vercel.svg)](https://vercel.com/new/clone?repositoryurl=https://github.com/sxgex/HTML-unleashed)
 <a target="_blank" href="https://glitch.com/edit/#!/import/github/sxgex/HTML-unleashed"><img alt="Remix on Glitch" src="https://binbashbanana.github.io/deploy-buttons/buttons/remade/glitch.svg"></a>
+
+### Todo 
+- **Add a simple preview function, which switches the code editor to a iframe of your project built in the code editor :)**
 
