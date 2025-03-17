@@ -15,7 +15,6 @@ data:text/html;charset=utf-8,%3C!DOCTYPE%20html%3E%0A%3Chtml%20lang%3D%22en%22%3
 
 2. **Download the index.html file**
 
-### Deploy to Cloud Service
 ### Todo 
 - **Add a simple preview function, which switches the code editor to a iframe of your project built in the code editor :)**
 
